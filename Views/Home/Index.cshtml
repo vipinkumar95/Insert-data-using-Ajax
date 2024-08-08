@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Ajaxsignup.Models.Signup>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Ajax.BeginForm("Index", "Home", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "DivUpdate",
+}))
+            {
+                <label>Search by Name</label>
+                <input type="text" name="q" />
+                <input type="submit" value="search" />
+            }
+
+
+   
+    <div id="DivUpdate">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.firstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lastname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.password)
+                </th>
+                <th></th>
+            </tr>
+
+            @if(Model.Count() == 0)
+            {
+
+
+<tr>
+                    <td colspan="6">
+                        No Data Available...
+                    </td>
+                </tr>
+
+}
+else { 
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.password)
+                    </td>
+                  
+                </tr>
+                }
+            }
+        </table>
+    </div>
